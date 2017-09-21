@@ -1,6 +1,8 @@
 Meta-mining on ethereum network concept 
 =======================================
 
+## [DAPP hosted here](https://overtorment.github.io/MetaMining/)
+
 To be discussed:
 ---------------
 
