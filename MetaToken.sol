@@ -2,6 +2,8 @@
 
 Meta Mining Meta Token
 
+based on https://github.com/ConsenSys/Tokens/blob/master/contracts/
+
 .*/
 
 import "./StandardToken.sol";
