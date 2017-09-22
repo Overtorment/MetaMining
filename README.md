@@ -47,7 +47,12 @@ License: WTFPL
 * [x] ~~Mining in browser tab (metamask integration?)~~
 * [ ] Someone review sources
 * [ ] Contract update (new version deployment), preserving all users tokens
- 
+
+
+## Discussions posted
+* https://bitcointalk.org/index.php?topic=2196804.msg22078128 
+* https://www.reddit.com/r/ethdapps/comments/71kdov/metamining_on_ethereum_network_concept/
+* http://forum.ethereum.org/discussion/15604/meta-mining-on-ethereum-network-concept/p1
 
 To be discussed:
 ---------------
