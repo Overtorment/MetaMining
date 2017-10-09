@@ -2,20 +2,23 @@
 
 Meta Mining Meta Token
 
-based on https://github.com/ConsenSys/Tokens/blob/master/contracts/
+https://github.com/Overtorment/MetaMining
 
-.*/
+*/
 
-import "./StandardToken.sol";
+import "https://github.com/OpenZeppelin/zeppelin-solidity/contracts/token/StandardToken.sol";
+import "https://github.com/OpenZeppelin/zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-pragma solidity ^0.4.8;
+import "./Ownable.sol";
 
-contract MetaToken is StandardToken {
+pragma solidity ^0.4.11;
+
+contract MetaToken is StandardToken, Ownable {
 
     string public name = 'MetaMetaMeta! Token';
     uint8 public decimals = 8;
     string public symbol = 'M3T';
-    string public version = '0.3.7';
+    string public version = '0.3.8';
 
     uint256 public blockReward = 5 * (10**uint256(decimals));
     uint32 public halvingInterval = 210000;
@@ -26,8 +29,7 @@ contract MetaToken is StandardToken {
     uint40 public lastMinedOn; // will be used to check how long did it take to mine
     uint256 public randomness;
 
-    /// constructor
-    function MetaToken() {
+    function MetaToken() Ownable() {
         lastMinedOn = uint40(block.timestamp);
         updateRandomness();
     }
@@ -64,7 +66,7 @@ contract MetaToken is StandardToken {
     function mine(uint256 nonce) returns (bool success) {
         require(checkMine(nonce));
 
-        Mine(msg.sender, blockReward, uint40(block.timestamp) - uint40(lastMinedOn) ); // issuing event to those who listens for it
+        Mine(msg.sender, blockReward, uint40(block.timestamp) - uint40(lastMinedOn)); // issuing event to those who listens for it
 
         balances[msg.sender] += blockReward; // giving reward
         blockNumber += 1;
@@ -94,19 +96,9 @@ contract MetaToken is StandardToken {
         return true;
     }
 
+    function destroy() onlyOwner external {
+        selfdestruct(owner);
+    }
 
     event Mine(address indexed _miner, uint256 _reward, uint40 _seconds);
-
-    /* taken from HumanStandardToken.sol */
-    /* Approves and then calls the receiving contract */
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
-        allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
-
-        //call the receiveApproval function on the contract you want to be notified. This crafts the function signature manually so one doesn't have to include a contract in here just for this.
-        //receiveApproval(address _from, uint256 _value, address _tokenContract, bytes _extraData)
-        //it is assumed that when does this that the call *should* succeed, otherwise one would use vanilla approve instead.
-        require(_spender.call(bytes4(bytes32(sha3("receiveApproval(address,uint256,address,bytes)"))), msg.sender, _value, this, _extraData));
-        return true;
-    }
 }
