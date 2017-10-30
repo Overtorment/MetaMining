@@ -53,6 +53,8 @@ License: WTFPL
 * https://bitcointalk.org/index.php?topic=2196804.msg22078128 
 * https://www.reddit.com/r/ethdapps/comments/71kdov/metamining_on_ethereum_network_concept/
 * http://forum.ethereum.org/discussion/15604/meta-mining-on-ethereum-network-concept/p1
+* https://www.reddit.com/r/ethereum/comments/796mfn/first_erc20_token_you_can_m1ne_in_browser/
+* https://www.reddit.com/r/ethdev/comments/79a0hd/first_erc20_token_you_can_m1ne_in_browser_xpost/
 
 To be discussed:
 ---------------
